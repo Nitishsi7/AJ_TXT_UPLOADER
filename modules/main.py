@@ -269,5 +269,19 @@ async def account_login(bot: Client, m: Message):
         await m.reply_text(e)
     await m.reply_text("**۞ 𝙰𝚁𝙸𝙶𝙰𝚃𝙾 ۞\n𝐈'𝐌 𝐃𝐎𝐍𝐄.☺**")
 
+import os
+from fastapi import FastAPI
 
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+if __name__ == "__main__":
+    import uvicorn
+    
+    # Use the PORT environment variable or default to 8080
+    port = int(os.environ.get('PORT', 8080))
+    uvicorn.run(app, host="0.0.0.0", port=port)
 bot.run()
